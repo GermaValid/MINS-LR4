@@ -1,6 +1,5 @@
 package ru.bmstu.iu3.reference;
 
-import io.grpc.Context;
 import io.grpc.stub.StreamObserver;
 import ru.bmstu.iu3.grpc.menu.DishItem;
 import ru.bmstu.iu3.grpc.menu.GetMenuRequest;
@@ -19,19 +18,10 @@ final class MenuCatalogGrpcServiceImpl extends MenuCatalogGrpc.MenuCatalogImplBa
         this.menu = menu;
     }
 
-    private static String traceId() {
-        String id = TraceServerInterceptor.TRACE_ID_CTX.get(Context.current());
-        return id != null ? id : "no-trace";
-    }
-
-    private static void log(String traceId, String message) {
-        System.out.println("[reference-service] [traceId=" + traceId + "] " + message);
-    }
-
     @Override
     public void getMenu(GetMenuRequest request, StreamObserver<GetMenuResponse> responseObserver) {
-        String tid = traceId();
-        log(tid, "GetMenu");
+        String tid = GrpcServiceLogger.traceId();
+        GrpcServiceLogger.log(tid, "GetMenu");
         GetMenuResponse.Builder b = GetMenuResponse.newBuilder();
         for (Dish dish : menu.getDishList()) {
             b.addDishes(DishItem.newBuilder()
@@ -46,9 +36,9 @@ final class MenuCatalogGrpcServiceImpl extends MenuCatalogGrpc.MenuCatalogImplBa
 
     @Override
     public void validateDishNumber(ValidateDishRequest request, StreamObserver<ValidateDishResponse> responseObserver) {
-        String tid = traceId();
+        String tid = GrpcServiceLogger.traceId();
         int n = request.getNumber();
-        log(tid, "ValidateDishNumber number=" + n);
+        GrpcServiceLogger.log(tid, "ValidateDishNumber number=" + n);
         ValidateDishResponse.Builder b = ValidateDishResponse.newBuilder();
         if (n < 1 || n > menu.size()) {
             b.setValid(false);
