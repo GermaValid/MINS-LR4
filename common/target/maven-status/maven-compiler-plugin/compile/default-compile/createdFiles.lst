@@ -1,0 +1,10 @@
+ru\bmstu\iu3\menu\Menu.class
+ru\bmstu\iu3\menu\SimpleDish.class
+ru\bmstu\iu3\menu\Dish.class
+ru\bmstu\iu3\exception\ValidationException.class
+ru\bmstu\iu3\menu\MenuUnitOfWork.class
+ru\bmstu\iu3\menu\MenuCsvLoader.class
+ru\bmstu\iu3\menu\MenuRepository.class
+ru\bmstu\iu3\menu\DefaultDishFactory.class
+ru\bmstu\iu3\menu\DishFactory.class
+ru\bmstu\iu3\menu\MenuBootstrap.class

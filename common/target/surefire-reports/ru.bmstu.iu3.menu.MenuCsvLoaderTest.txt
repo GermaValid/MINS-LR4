@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ru.bmstu.iu3.menu.MenuCsvLoaderTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in ru.bmstu.iu3.menu.MenuCsvLoaderTest
